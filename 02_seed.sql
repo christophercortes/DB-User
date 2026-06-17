@@ -1,23 +1,3 @@
-INSERT INTO person (
-    rut,
-    first_name,
-    last_name_father,
-    last_name_mother,
-    address,
-    commune,
-    email,
-    phone
-) VALUES (
-    '12345678-9',
-    'Pedro',
-    'Ruiz',
-    'Perez',
-    'Av. Example 123',
-    'La Florida',
-    'pedro@test.com',
-    '987654321'
-);
-
 INSERT INTO commune (name)
 VALUES
 ('Algarrobo'),
@@ -126,3 +106,45 @@ VALUES
 ('Villa Alemana'),
 ('Viña del Mar'),
 ('Vitacura');
+
+INSERT INTO entity (
+    rut,
+    type,
+    first_name,
+    last_name_father,
+    last_name_mother,
+    address,
+    commune_id,
+    email,
+    phone
+)
+VALUES (
+    '12345678-9',
+    'person',
+    'Pedro',
+    'Ruiz',
+    'Perez',
+    'Av. Example 123',
+    (SELECT id FROM commune WHERE name = 'La Florida'),
+    'pedro@test.com',
+    '987654321'
+);
+
+INSERT INTO entity (
+    rut,
+    type,
+    business_name,
+    address,
+    commune_id,
+    email,
+    phone
+)
+VALUES (
+    '76.123.456-7',
+    'company',
+    'Transportes Fernández SpA',
+    'Av. Industrial 456',
+    (SELECT id FROM commune WHERE name = 'Santiago'),
+    'contacto@transportes.cl',
+    '912345678'
+);
